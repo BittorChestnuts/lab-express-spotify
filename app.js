@@ -29,17 +29,17 @@ spotifyApi
 // Our routes go here:
 app.listen(3000, () => console.log('My Spotify project running on port 3000 🎧 🥁 🎸 🔊'));
 
-// 1.  ROUTE TO RENDER THE FORM "/"
+// 1.  ROUTE TO RENDER THE FORM "/" estas rutas son para que funcionen los archivos en el browser, sino no tenemos acceso
 
-app.get("/form", (req, res) => {
+app.get("/", (req, res) => {
   res.render("form")
 })
 
 
 //2.   ROUTE TO DISPLAY THE RESULTS "/artist-results"
 
-app.get("/artist-results", (req, res) => {
-  const artistName = req.query.artistName // aqui paso el "name" del form donde pongo el artista
+app.get("/artist-search", (req, res) => {
+  const artistName = req.query.artistName // aqui paso el "name" del form donde pongo el artista. recogo la informacion del formulario de entrad.a
   spotifyApi
     .searchArtists(artistName)
     .then(data => {
@@ -50,4 +50,3 @@ app.get("/artist-results", (req, res) => {
     })
     .catch(err => console.log('The error while searching artists occurred: ', err));
 })
-
